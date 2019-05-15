@@ -13,33 +13,45 @@ function moveFocus(e) {
     if(e.which === 40) {
         if(itemSelected) {
             itemSelected.classList.remove('selected');
+            itemSelected.removeAttribute('aria-selected', 'true');
             next = itemSelected.nextElementSibling;
             if(next) {
                 itemSelected = next;
                 next.classList.add('selected');
+                next.setAttribute('aria-selected', 'true');
             } else {
                 itemSelected = selectionItems[0];
                 itemSelected.classList.add('selected');
+                itemSelected.setAttribute('aria-selected', 'true');
             }
         } else {
             itemSelected = selectionItems[0];
             itemSelected.classList.add('selected');
+            itemSelected.setAttribute('aria-selected', 'true');
         }
+
+        selectionList.setAttribute('aria-activedescendant', itemSelected.getAttribute('id'));
     } else if(e.which === 38) {
         if(itemSelected) {
             itemSelected.classList.remove('selected');
             next = itemSelected.previousElementSibling;
+            itemSelected.removeAttribute('aria-selected', 'true');
             if(next) {
                 itemSelected = next;
                 next.classList.add('selected');
+                next.setAttribute('aria-selected', 'true');
             } else {
                 itemSelected = selectionItems[selectionItems.length - 1];
                 itemSelected.classList.add('selected');
+                itemSelected.setAttribute('aria-selected', 'true');
             }
         } else {
             itemSelected = selectionItems[selectionItems.length - 1];
-            itemSelected.classList.add('selected');;
+            itemSelected.classList.add('selected');
+            itemSelected.setAttribute('aria-selected', 'true');
         }
+
+        selectionList.setAttribute('aria-activedescendant', itemSelected.getAttribute('id'));
     }
 };
 
