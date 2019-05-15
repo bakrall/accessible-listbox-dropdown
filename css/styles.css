@@ -1,0 +1,20 @@
+#selection__list {
+	display: none;
+	padding-left: 0;
+	width: 82px;
+	border: 1px solid #000;
+}
+
+#selection__list.active {
+	display: block;
+}
+
+.selection__item {
+	list-style: none;
+	padding: 10px 5px;
+	border-bottom: 2px solid #afa;
+}
+
+.selection__item.selected {
+	background: #fef;
+}
