@@ -1,4 +1,5 @@
 const selectionButton = document.querySelector('#selection__button'),
+    selectionListComponent = document.querySelector('#selection__list-area'),
 	selectionList = document.querySelector('#selection__list'),
 	selectionItems = Array.from(document.querySelectorAll('.selection__item')),
     firstListItem = selectionItems[0],
@@ -30,6 +31,11 @@ function selectLastItem(lastListItem) {
     selectItem(itemSelected);
 }
 
+function selectNextItem(next) {
+    itemSelected = next;
+    selectItem(next); 
+}
+
 //https://stackoverflow.com/questions/8902787/navigate-through-list-using-arrow-keys-javascript-jq
 function moveFocus(e) {
     if(e.which === 40) {
@@ -37,8 +43,7 @@ function moveFocus(e) {
             deSelectItem(itemSelected);
             next = itemSelected.nextElementSibling;
             if(next) {
-                itemSelected = next;
-                selectItem(next);
+                selectNextItem(next)
             } else {
                 selectFirstItem(firstListItem);
             }
@@ -50,8 +55,7 @@ function moveFocus(e) {
             deSelectItem(itemSelected);
             next = itemSelected.previousElementSibling;
             if(next) {
-                itemSelected = next;
-                selectItem(next);
+                selectNextItem(next)
             } else {
                 selectLastItem(lastListItem);
             }
@@ -64,4 +68,8 @@ function moveFocus(e) {
 };
 
 selectionButton.addEventListener('click', openSelectionList);
-window.addEventListener('keydown', moveFocus)
+selectionListComponent.addEventListener('keydown', (e) => {
+    if (e.which === 40 || e.which === 38) {
+        moveFocus(e);
+    }
+});
