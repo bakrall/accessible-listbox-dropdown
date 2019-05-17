@@ -1,6 +1,6 @@
 const selectionButton = document.querySelector('#selection__button'),
     selectionListComponent = document.querySelector('#selection__list-area'),
-	selectionList = document.querySelector('#selection__list'),
+    selectionList = document.querySelector('#selection__list'),
 	selectionItems = Array.from(document.querySelectorAll('.selection__item')),
     firstListItem = selectionItems[0],
     lastListItem = selectionItems[selectionItems.length - 1];
