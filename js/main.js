@@ -1,13 +1,13 @@
 const selectionButton = document.querySelector('#selection__button'),
     selectionListComponent = document.querySelector('#selection__list-area'),
     selectionList = document.querySelector('#selection__list'),
-	selectionItems = Array.from(document.querySelectorAll('.selection__item')),
+    selectionItems = Array.from(document.querySelectorAll('.selection__item')),
     firstListItem = selectionItems[0],
     lastListItem = selectionItems[selectionItems.length - 1];
 let itemSelected;
 
 function openSelectionList() {
-	selectionList.classList.toggle('active');
+    selectionList.classList.toggle('active');
     selectFirstItem(firstListItem);
 }	
 
