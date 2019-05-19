@@ -81,4 +81,4 @@ selectionListComponent.addEventListener('keydown', (e) => {
     }
 });
 
-// document.addEventListener('click', closeListbox);
+document.addEventListener('click', closeListbox);
