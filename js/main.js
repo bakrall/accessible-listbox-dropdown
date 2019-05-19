@@ -86,7 +86,7 @@ function fixSupportForClickOnIOS() {
 }
 
 function init() {
-    fixSupportForClickOnIOS();
+    // fixSupportForClickOnIOS();
     bindUiEvents();
 }
 
@@ -98,7 +98,7 @@ function bindUiEvents() {
         }
     });
 
-    document.addEventListener('click', closeListbox);
+    document.addEventListener('click touchend', closeListbox);
 }
 
 init();
