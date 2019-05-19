@@ -67,9 +67,18 @@ function moveFocus(e) {
     selectionList.setAttribute('aria-activedescendant', itemSelected.getAttribute('id'));
 };
 
+function closeListbox(e) {
+    if (e.target.parentNode !== selectionListComponent) {
+        selectionList.classList.remove('active');
+        deSelectItem(itemSelected);
+    }
+}
+
 selectionButton.addEventListener('click', openSelectionList);
 selectionListComponent.addEventListener('keydown', (e) => {
     if (e.which === 40 || e.which === 38) {
         moveFocus(e);
     }
 });
+
+document.addEventListener('click', closeListbox);
