@@ -74,11 +74,31 @@ function closeListbox(e) {
     }
 }
 
-selectionButton.addEventListener('click', openSelectionList);
-selectionListComponent.addEventListener('keydown', (e) => {
-    if (e.which === 40 || e.which === 38) {
-        moveFocus(e);
-    }
-});
+//https://stackoverflow.com/questions/9038625/detect-if-device-is-ios
+//https://stackoverflow.com/questions/3705937/document-click-not-working-correctly-on-iphone-jquery
+function fixSupportForClickOnIOS() {
+    console.log(navigator.userAgent);
+    const iOSMobile = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
-document.addEventListener('click', closeListbox);
+    if (iOSMobile) {
+        document.body.style.cursor = "pointer";
+    }
+}
+
+function init() {
+    fixSupportForClickOnIOS();
+    bindUiEvents();
+}
+
+function bindUiEvents() {
+    selectionButton.addEventListener('click', openSelectionList);
+    selectionListComponent.addEventListener('keydown', (e) => {
+        if (e.which === 40 || e.which === 38) {
+            moveFocus(e);
+        }
+    });
+
+    document.addEventListener('click', closeListbox);
+}
+
+init();
