@@ -86,7 +86,7 @@ function fixSupportForClickOnIOS() {
 }
 
 function init() {
-    // fixSupportForClickOnIOS();
+    fixSupportForClickOnIOS();
     bindUiEvents();
 }
 
