@@ -77,7 +77,6 @@ function closeListbox(e) {
 //https://stackoverflow.com/questions/9038625/detect-if-device-is-ios
 //https://stackoverflow.com/questions/3705937/document-click-not-working-correctly-on-iphone-jquery
 function fixSupportForClickOnIOS() {
-    console.log(navigator.userAgent);
     const iOSMobile = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
     if (iOSMobile) {
@@ -98,7 +97,7 @@ function bindUiEvents() {
         }
     });
 
-    document.addEventListener('click touchend', closeListbox);
+    document.addEventListener('click', closeListbox);
 }
 
 init();
