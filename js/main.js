@@ -68,10 +68,16 @@ function moveFocus(e) {
 };
 
 function closeListbox(e) {
-    if (e.target.parentNode !== selectionListComponent) {
+    if (e.target.parentNode !== selectionListComponent & selectionList.classList.contains('active')) {
         selectionList.classList.remove('active');
         deSelectItem(itemSelected);
     }
+}
+
+function updateChosenItem(e) {
+    let itemValue = itemSelected.innerHTML;
+
+    selectionButton.innerHTML = itemValue;
 }
 
 //https://stackoverflow.com/questions/9038625/detect-if-device-is-ios
@@ -87,6 +93,7 @@ function fixSupportForClickOnIOS() {
 function init() {
     fixSupportForClickOnIOS();
     bindUiEvents();
+
 }
 
 function bindUiEvents() {
@@ -94,6 +101,7 @@ function bindUiEvents() {
     selectionListComponent.addEventListener('keydown', (e) => {
         if (e.which === 40 || e.which === 38) {
             moveFocus(e);
+            updateChosenItem(e);
         }
     });
 
