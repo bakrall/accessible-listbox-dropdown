@@ -7,9 +7,21 @@ const selectionButton = document.querySelector('#selection__button'),
 let itemSelected;
 
 function openSelectionList() {
+    let expanded = selectionButton.getAttribute('aria-expanded') === "false";
+
+    if (itemSelected) deSelectItem(itemSelected);
     selectionList.classList.toggle('active');
+    selectionList.focus();
     selectFirstItem(firstListItem);
+    selectionButton.setAttribute('aria-expanded', expanded);
 }	
+
+function checkForOpen(e) {
+    if (e.which === 13) {
+        e.preventDefault();
+        openSelectionList();
+    }
+}
 
 function deSelectItem(listItem) {
     listItem.classList.remove('selected');
@@ -68,9 +80,10 @@ function moveFocus(e) {
 };
 
 function closeListbox(e) {
-    if (e.target.parentNode !== selectionListComponent & selectionList.classList.contains('active')) {
+    if (selectionList.classList.contains('active')) {
         selectionList.classList.remove('active');
         deSelectItem(itemSelected);
+        selectionButton.setAttribute('aria-expanded', 'false');
     }
 }
 
@@ -98,6 +111,8 @@ function init() {
 
 function bindUiEvents() {
     selectionButton.addEventListener('click', openSelectionList);
+    selectionButton.addEventListener('keydown', checkForOpen);
+
     selectionListComponent.addEventListener('keydown', (e) => {
         if (e.which === 40 || e.which === 38) {
             moveFocus(e);
@@ -105,7 +120,8 @@ function bindUiEvents() {
         }
     });
 
-    document.addEventListener('click', closeListbox);
+    // document.addEventListener('click', closeListbox);
+    selectionList.addEventListener('blur', closeListbox);
 }
 
 init();
