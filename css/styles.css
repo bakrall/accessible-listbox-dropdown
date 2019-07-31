@@ -1,3 +1,12 @@
+.selection__list-area {
+	display: inline-block;
+	float: left;
+}
+
+.selection__title {
+	display: block;
+}
+
 #selection__list {
 	display: none;
 	padding-left: 0;
